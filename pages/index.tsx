@@ -30,7 +30,6 @@ const Home: NextPage = () => {
           <div className='flex flex-col sm:flex-row justify-center gap-4 mb-12'>
             <Link href='/projects' className='btn-primary'>View My Work</Link>
             <Link href='/contact' className='btn-outline'>Get In Touch</Link>
-            <a href='/Mohit-Jakhotra-CV.pdf' download className='btn-outline'>Download CV</a>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto'>

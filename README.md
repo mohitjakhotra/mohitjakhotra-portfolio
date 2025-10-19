@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mohit Jakhotra - Portfolio Website
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Features
 
+- **Modern Tech Stack**: Next.js 14, TypeScript, Tailwind CSS
+- **Responsive Design**: Mobile-first approach with dark mode support
+- **SEO Optimized**: Meta tags, structured data, and performance optimized
+- **Fast Performance**: Static generation and optimized images
+- **Professional Sections**:
+  - Homepage with hero section
+  - About page with career journey
+  - Experience timeline
+  - Skills showcase with certifications
+  - Projects portfolio
+  - Blog integration
+  - Contact form
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Heroicons
+- **UI Components**: Headless UI
+- **Animations**: Framer Motion
+- **Analytics**: Vercel Analytics
+- **Content**: MDX for blog posts
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/mohitjakhotra/mohitjakhotra-portfolio.git
+cd mohitjakhotra-portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## 🚀 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project is optimized for deployment on Vercel:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Vercel will automatically detect Next.js and deploy
+4. Add your custom domain in Vercel settings
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+```
+├── components/          # Reusable UI components
+│   ├── Footer.tsx      # Site footer
+│   ├── Navbar.tsx      # Navigation bar
+│   └── ProjectCard.tsx # Project showcase card
+├── pages/              # Next.js pages
+│   ├── _app.tsx        # App wrapper
+│   ├── index.tsx       # Homepage
+│   ├── about.tsx       # About page
+│   ├── experience.tsx  # Experience timeline
+│   ├── skills.tsx      # Skills & certifications
+│   ├── projects.tsx    # Projects showcase
+│   ├── blog.tsx        # Blog posts
+│   └── contact.tsx     # Contact page
+├── public/             # Static assets
+├── styles/             # Global styles
+│   └── globals.css     # Tailwind imports
+└── package.json        # Dependencies and scripts
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Personal Information
+Update the following files with your information:
+- `pages/index.tsx` - Hero section and personal details
+- `pages/about.tsx` - About content and career story
+- `pages/experience.tsx` - Work experience details
+- `pages/skills.tsx` - Skills and certifications
+- `pages/projects.tsx` - Project portfolio
+- `pages/contact.tsx` - Contact information
+
+### Styling
+- Colors and themes can be customized in `tailwind.config.js`
+- Global styles are in `styles/globals.css`
+- Component-specific styles are inline with Tailwind classes
+
+## 📋 Pre-Deployment Checklist
+
+Before deploying, make sure to:
+
+- [ ] Add your CV/resume as `public/Mohit-Jakhotra-CV.pdf`
+- [ ] Replace the avatar placeholder in `pages/index.tsx` with your actual photo
+- [ ] Verify all GitHub repository links are accessible
+- [ ] Update contact email if needed
+- [ ] Test the build locally: `npm run build`
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👨‍💻 Author
+
+**Mohit Jakhotra**
+- Website: [mohitjakhotra.tech](https://mohitjakhotra.tech)
+- LinkedIn: [linkedin.com/in/mohitjakhotra](https://linkedin.com/in/mohitjakhotra)
+- GitHub: [github.com/mohitjakhotra](https://github.com/mohitjakhotra)
+- Email: hello@mohitjakhotra.tech
+
+---
+
+Built with ❤️ using Next.js and deployed on Vercel.
