@@ -142,7 +142,7 @@ const Contact: NextPage = () => {
                   </div>
                   <div>
                     <p className='font-medium'>Email</p>
-                    <p className='text-gray-600 dark:text-gray-300'>mohitjakhotra@example.com</p>
+                    <p className='text-gray-600 dark:text-gray-300'>mohitjakhotra@gmail.com</p>
                   </div>
                 </div>
 

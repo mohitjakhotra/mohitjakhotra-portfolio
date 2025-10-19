@@ -10,13 +10,16 @@ const Navbar = () => {
         <div className='flex justify-between h-16'>
           <div className='flex items-center'>
             <Link href='/' className='text-2xl font-bold text-indigo-600 dark:text-indigo-400'>
-              YourName
+              Mohit Jakhotra
             </Link>
           </div>
           <div className='hidden sm:flex sm:space-x-8'>
             <Link href='/' className='inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400'>Home</Link>
             <Link href='/about' className='inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400'>About</Link>
+            <Link href='/experience' className='inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400'>Experience</Link>
+            <Link href='/skills' className='inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400'>Skills</Link>
             <Link href='/projects' className='inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400'>Projects</Link>
+            <Link href='/blog' className='inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400'>Blog</Link>
             <Link href='/contact' className='inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400'>Contact</Link>
           </div>
           <div className='-mr-2 flex items-center sm:hidden'>
@@ -41,7 +44,10 @@ const Navbar = () => {
           <div className='pt-2 pb-4 space-y-1'>
             <Link href='/' className='block pl-3 pr-4 py-2 text-base font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-800'>Home</Link>
             <Link href='/about' className='block pl-3 pr-4 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'>About</Link>
+            <Link href='/experience' className='block pl-3 pr-4 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'>Experience</Link>
+            <Link href='/skills' className='block pl-3 pr-4 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'>Skills</Link>
             <Link href='/projects' className='block pl-3 pr-4 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'>Projects</Link>
+            <Link href='/blog' className='block pl-3 pr-4 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'>Blog</Link>
             <Link href='/contact' className='block pl-3 pr-4 py-2 text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'>Contact</Link>
           </div>
         </div>
