@@ -25,6 +25,7 @@ A modern, responsive portfolio website built with Next.js 14, TypeScript, and Ta
 - **Icons**: Heroicons
 - **UI Components**: Headless UI
 - **Animations**: Framer Motion
+- **Email Service**: EmailJS
 - **Analytics**: Vercel Analytics
 - **Content**: MDX for blog posts
 
@@ -99,6 +100,17 @@ Update the following files with your information:
 
 Before deploying, make sure to:
 
+- [ ] **Set up EmailJS for contact form**:
+  1. Create a free account at [emailjs.com](https://www.emailjs.com/)
+  2. Create an email service (Gmail, Outlook, etc.)
+  3. Create an email template with variables: `{{from_name}}`, `{{from_email}}`, `{{subject}}`, `{{message}}`, `{{to_name}}`
+  4. Copy your Service ID, Template ID, and Public Key
+  5. Update the constants in `pages/contact.tsx`:
+     ```typescript
+     const SERVICE_ID = 'your_service_id_here'
+     const TEMPLATE_ID = 'your_template_id_here' 
+     const PUBLIC_KEY = 'your_public_key_here'
+     ```
 - [ ] Add your CV/resume as `public/Mohit-Jakhotra-CV.pdf`
 - [ ] Replace the avatar placeholder in `pages/index.tsx` with your actual photo
 - [ ] Verify all GitHub repository links are accessible

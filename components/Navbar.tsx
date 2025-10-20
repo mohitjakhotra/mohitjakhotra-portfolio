@@ -51,16 +51,17 @@ const Navbar = () => {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <Link href='/' className='text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors'>
-              Mohit Jakhotra
+              MJ
             </Link>
           </motion.div>
-          <div className='hidden sm:flex sm:space-x-8'>
+          <div className='hidden sm:flex sm:items-center sm:space-x-8'>
             {navItems.map((item, index) => (
               <motion.div
                 key={item.href}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.3 }}
+                className='flex items-center'
               >
                 <Link
                   href={item.href}

@@ -5,9 +5,12 @@ import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import emailjs from '@emailjs/browser'
 
 const Contact: NextPage = () => {
   const [selectedSubject, setSelectedSubject] = useState<string>('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const subjectOptions = [
     { id: 'job', name: 'Job Opportunity' },
@@ -46,6 +49,47 @@ const Contact: NextPage = () => {
     }
   ]
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    // TODO: Set up EmailJS account at https://www.emailjs.com/
+    // Replace the service ID, template ID, and public key below with your EmailJS credentials
+    const SERVICE_ID = 'service_d5yobdz' // Get from EmailJS dashboard
+    const TEMPLATE_ID = 'template_q6hdn4t' // Create a template in EmailJS
+    const PUBLIC_KEY = 'xJHbH6idsn_vIY_Rw' // Get from EmailJS dashboard
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    
+    const templateParams = {
+      from_name: `${formData.get('firstName')} ${formData.get('lastName')}`.trim(),
+      from_email: formData.get('email'),
+      subject: subjectOptions.find(option => option.id === selectedSubject)?.name || 'General Inquiry',
+      message: formData.get('message'),
+      to_name: 'Mohit Jakhotra'
+    }
+
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
+      )
+      
+      setSubmitStatus('success')
+      form.reset()
+      setSelectedSubject('')
+    } catch (error) {
+      console.error('EmailJS error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <>
       <Head>
@@ -68,7 +112,7 @@ const Contact: NextPage = () => {
           {/* Contact Form */}
           <div className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-8'>
             <h2 className='text-2xl font-semibold mb-6'>Send a Message</h2>
-            <form className='space-y-6'>
+            <form onSubmit={handleSubmit} className='space-y-6'>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <div>
                   <label htmlFor='firstName' className='block text-sm font-medium mb-2'>First Name</label>
@@ -173,10 +217,46 @@ const Contact: NextPage = () => {
 
               <button
                 type='submit'
-                className='w-full btn-primary py-3 text-lg font-medium'
+                disabled={isSubmitting}
+                className='w-full btn-primary py-3 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'
               >
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <svg className='animate-spin h-5 w-5' fill='none' viewBox='0 0 24 24'>
+                      <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4'></circle>
+                      <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  'Send Message'
+                )}
               </button>
+
+              {/* Form Status Messages */}
+              {submitStatus === 'success' && (
+                <div className='p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg'>
+                  <div className='flex items-center gap-2'>
+                    <svg className='w-5 h-5 text-green-600 dark:text-green-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
+                    </svg>
+                    <p className='text-green-800 dark:text-green-200 font-medium'>Message sent successfully!</p>
+                  </div>
+                  <p className='text-green-700 dark:text-green-300 text-sm mt-1'>Thank you for reaching out. I&apos;ll get back to you soon.</p>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className='p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg'>
+                  <div className='flex items-center gap-2'>
+                    <svg className='w-5 h-5 text-red-600 dark:text-red-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+                    </svg>
+                    <p className='text-red-800 dark:text-red-200 font-medium'>Failed to send message</p>
+                  </div>
+                  <p className='text-red-700 dark:text-red-300 text-sm mt-1'>Please try again or contact me directly at mohitjakhotra@gmail.com</p>
+                </div>
+              )}
             </form>
           </div>
 
@@ -194,7 +274,7 @@ const Contact: NextPage = () => {
                   </div>
                   <div>
                     <p className='font-medium'>Email</p>
-                    <p className='text-gray-600 dark:text-gray-300'>hello@mohitjakhotra.tech</p>
+                    <p className='text-gray-600 dark:text-gray-300'>mohitjakhotra@gmail.com</p>
                   </div>
                 </div>
 
