@@ -1,0 +1,7 @@
+{
+  "watch": ["pages", "components", "styles", "public", "lib", "utils"],
+  "ext": "ts,tsx,js,jsx,json,css,md,mdx",
+  "ignore": ["node_modules", ".next", "out", ".git"],
+  "exec": "next dev",
+  "delay": 300
+}

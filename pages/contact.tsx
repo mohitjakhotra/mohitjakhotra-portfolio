@@ -1,9 +1,21 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useState, Fragment } from 'react'
+import { Listbox, Transition } from '@headlessui/react'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 const Contact: NextPage = () => {
+  const [selectedSubject, setSelectedSubject] = useState<string>('')
+
+  const subjectOptions = [
+    { id: 'job', name: 'Job Opportunity' },
+    { id: 'project', name: 'Project Collaboration' },
+    { id: 'consultation', name: 'Technical Consultation' },
+    { id: 'other', name: 'Other' }
+  ]
+
   const socialLinks = [
     {
       name: 'LinkedIn',
@@ -93,18 +105,58 @@ const Contact: NextPage = () => {
 
               <div>
                 <label htmlFor='subject' className='block text-sm font-medium mb-2'>Subject</label>
-                <select
-                  id='subject'
-                  name='subject'
-                  className='w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white'
-                  required
-                >
-                  <option value=''>Select a topic</option>
-                  <option value='job'>Job Opportunity</option>
-                  <option value='project'>Project Collaboration</option>
-                  <option value='consultation'>Technical Consultation</option>
-                  <option value='other'>Other</option>
-                </select>
+                <Listbox value={selectedSubject} onChange={setSelectedSubject}>
+                  <div className='relative mt-1'>
+                    <Listbox.Button className='relative w-full cursor-default rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 py-3 pl-4 pr-10 text-left shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white'>
+                      <span className='block truncate'>
+                        {selectedSubject ? subjectOptions.find(option => option.id === selectedSubject)?.name : 'Select a topic'}
+                      </span>
+                      <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
+                        <ChevronUpDownIcon
+                          className='h-5 w-5 text-gray-400'
+                          aria-hidden='true'
+                        />
+                      </span>
+                    </Listbox.Button>
+                    <Transition
+                      as={Fragment}
+                      leave='transition ease-in duration-100'
+                      leaveFrom='opacity-100'
+                      leaveTo='opacity-0'
+                    >
+                      <Listbox.Options className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-gray-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                        {subjectOptions.map((option) => (
+                          <Listbox.Option
+                            key={option.id}
+                            className={({ active }) =>
+                              `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                                active ? 'bg-indigo-100 dark:bg-indigo-600 text-indigo-900 dark:text-white' : 'text-gray-900 dark:text-gray-100'
+                              }`
+                            }
+                            value={option.id}
+                          >
+                            {({ selected }) => (
+                              <>
+                                <span
+                                  className={`block truncate ${
+                                    selected ? 'font-medium' : 'font-normal'
+                                  }`}
+                                >
+                                  {option.name}
+                                </span>
+                                {selected ? (
+                                  <span className='absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600 dark:text-indigo-400'>
+                                    <CheckIcon className='h-5 w-5' aria-hidden='true' />
+                                  </span>
+                                ) : null}
+                              </>
+                            )}
+                          </Listbox.Option>
+                        ))}
+                      </Listbox.Options>
+                    </Transition>
+                  </div>
+                </Listbox>
               </div>
 
               <div>

@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -65,6 +66,22 @@ const Skills: NextPage = () => {
     }
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 }
+  }
+
   const getProficiencyColor = (level: number) => {
     if (level >= 85) return 'bg-green-500'
     if (level >= 75) return 'bg-blue-500'
@@ -88,93 +105,273 @@ const Skills: NextPage = () => {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       <Navbar />
-      <main className='min-h-screen max-w-6xl mx-auto px-4 py-12'>
-        <div className='text-center mb-12'>
-          <h1 className='text-4xl font-bold mb-4'>Skills & Certifications</h1>
-          <p className='text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto'>
+      <motion.main
+        className='min-h-screen max-w-6xl mx-auto px-4 py-12'
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div
+          className='text-center mb-12'
+          variants={itemVariants}
+        >
+          <motion.h1
+            className='text-4xl font-bold mb-4'
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            Skills & Certifications
+          </motion.h1>
+          <motion.p
+            className='text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
             A comprehensive overview of my technical expertise and professional certifications
             in full-stack development and enterprise technologies.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Skills Section */}
-        <section className='mb-16'>
-          <h2 className='text-3xl font-semibold mb-8'>Technical Skills</h2>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+        <motion.section
+          className='mb-16'
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className='text-3xl font-semibold mb-8'
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Technical Skills
+          </motion.h2>
+          <motion.div
+            className='grid grid-cols-1 md:grid-cols-2 gap-8'
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {skillCategories.map((category, index) => (
-              <div key={index} className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-6'>
-                <h3 className='text-xl font-semibold mb-6'>{category.title}</h3>
+              <motion.div
+                key={index}
+                className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300'
+                variants={itemVariants}
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.h3
+                  className='text-xl font-semibold mb-6'
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  {category.title}
+                </motion.h3>
                 <div className='space-y-4'>
                   {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex}>
+                    <motion.div
+                      key={skillIndex}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: skillIndex * 0.1, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
                       <div className='flex justify-between items-center mb-2'>
                         <span className='font-medium'>{skill.name}</span>
                         <span className='text-sm text-gray-500'>{getProficiencyLabel(skill.level)}</span>
                       </div>
                       <div className='w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2'>
-                        <div
-                          className={`h-2 rounded-full ${getProficiencyColor(skill.level)} transition-all duration-300`}
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
+                        <motion.div
+                          className={`h-2 rounded-full ${getProficiencyColor(skill.level)}`}
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          transition={{ delay: 0.2 + skillIndex * 0.1, duration: 1, ease: "easeOut" }}
+                          viewport={{ once: true }}
+                        ></motion.div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
         {/* Certifications Section */}
-        <section className='mb-16'>
-          <h2 className='text-3xl font-semibold mb-8'>Certifications</h2>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+        <motion.section
+          className='mb-16'
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className='text-3xl font-semibold mb-8'
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Certifications
+          </motion.h2>
+          <motion.div
+            className='grid grid-cols-1 md:grid-cols-2 gap-6'
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {certifications.map((cert, index) => (
-              <div key={index} className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-l-4 border-indigo-500'>
+              <motion.div
+                key={index}
+                className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border-l-4 border-indigo-500 hover:shadow-lg transition-shadow duration-300'
+                variants={itemVariants}
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
                 <div className='flex items-start justify-between mb-4'>
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.1, duration: 0.4 }}
+                    viewport={{ once: true }}
+                  >
                     <h3 className='text-lg font-semibold mb-1'>{cert.title}</h3>
                     <p className='text-indigo-600 dark:text-indigo-400 font-medium'>{cert.issuer}</p>
-                  </div>
-                  <span className='text-sm text-gray-500 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full'>
+                  </motion.div>
+                  <motion.span
+                    className='text-sm text-gray-500 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full'
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                    viewport={{ once: true }}
+                  >
                     {cert.date}
-                  </span>
+                  </motion.span>
                 </div>
-                <p className='text-gray-600 dark:text-gray-300 mb-3'>{cert.description}</p>
-                <p className='text-sm text-gray-500'>
+                <motion.p
+                  className='text-gray-600 dark:text-gray-300 mb-3'
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  {cert.description}
+                </motion.p>
+                <motion.p
+                  className='text-sm text-gray-500'
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
+                  viewport={{ once: true }}
+                >
                   <span className='font-medium'>Credential ID:</span> {cert.credentialId}
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
         {/* Additional Skills */}
-        <section className='mb-16'>
-          <h2 className='text-3xl font-semibold mb-8'>Additional Expertise</h2>
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-            <div className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center'>
-              <h3 className='text-lg font-semibold mb-2'>Testing</h3>
-              <p className='text-gray-600 dark:text-gray-300'>Jest, React Testing Library, Integration Testing</p>
-            </div>
-            <div className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center'>
-              <h3 className='text-lg font-semibold mb-2'>DevOps</h3>
-              <p className='text-gray-600 dark:text-gray-300'>Docker, CI/CD, Version Control (Git)</p>
-            </div>
-            <div className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center'>
-              <h3 className='text-lg font-semibold mb-2'>Soft Skills</h3>
-              <p className='text-gray-600 dark:text-gray-300'>Problem Solving, Team Collaboration, Agile Development</p>
-            </div>
-          </div>
-        </section>
+        <motion.section
+          className='mb-16'
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className='text-3xl font-semibold mb-8'
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Additional Expertise
+          </motion.h2>
+          <motion.div
+            className='grid grid-cols-1 md:grid-cols-3 gap-6'
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                title: 'Testing',
+                description: 'Jest, React Testing Library, Integration Testing'
+              },
+              {
+                title: 'DevOps',
+                description: 'Docker, CI/CD, Version Control (Git)'
+              },
+              {
+                title: 'Soft Skills',
+                description: 'Problem Solving, Team Collaboration, Agile Development'
+              }
+            ].map((skill, index) => (
+              <motion.div
+                key={index}
+                className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 text-center hover:shadow-lg transition-shadow duration-300'
+                variants={itemVariants}
+                whileHover={{ y: -5, scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.h3
+                  className='text-lg font-semibold mb-2'
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  {skill.title}
+                </motion.h3>
+                <motion.p
+                  className='text-gray-600 dark:text-gray-300'
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  {skill.description}
+                </motion.p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.section>
 
-        <div className='text-center'>
-          <p className='text-gray-600 dark:text-gray-300 mb-4'>
+        <motion.div
+          className='text-center'
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.p
+            className='text-gray-600 dark:text-gray-300 mb-4'
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+            viewport={{ once: true }}
+          >
             Always learning and exploring new technologies
-          </p>
-          <Link href='/contact' className='btn-primary'>Discuss a Project</Link>
-        </div>
-      </main>
+          </motion.p>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link href='/contact' className='btn-primary'>Discuss a Project</Link>
+          </motion.div>
+        </motion.div>
+      </motion.main>
       <Footer />
     </>
   )
