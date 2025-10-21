@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { LightBulbIcon, HeartIcon, RocketLaunchIcon } from '@heroicons/react/24/outline'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -108,24 +109,62 @@ const About: NextPage = () => {
             >
               Core Values
             </motion.h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
-              <div className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md'>
-                <h3 className='text-lg font-semibold mb-2'>Clean Code</h3>
-                <p className='text-gray-600 dark:text-gray-300'>Writing maintainable, readable code that stands the test of time.</p>
-              </div>
-              <div className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md'>
-                <h3 className='text-lg font-semibold mb-2'>Continuous Learning</h3>
-                <p className='text-gray-600 dark:text-gray-300'>Always exploring new technologies and best practices.</p>
-              </div>
-              <div className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md'>
-                <h3 className='text-lg font-semibold mb-2'>Problem Solving</h3>
-                <p className='text-gray-600 dark:text-gray-300'>Breaking down complex challenges into manageable solutions.</p>
-              </div>
-              <div className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md'>
+            
+            {/* Illustrations Section */}
+            <motion.div 
+              className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 mb-8'
+              variants={itemVariants}
+            >
+              <motion.div
+                className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group'
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <div className='w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300'>
+                  <LightBulbIcon className='w-6 h-6 text-white' />
+                </div>
+                <h3 className='text-lg font-semibold mb-2'>Innovation</h3>
+                <p className='text-gray-600 dark:text-gray-300 text-sm'>Always exploring new technologies and creative solutions.</p>
+              </motion.div>
+
+              <motion.div
+                className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group'
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+              >
+                <div className='w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300'>
+                  <HeartIcon className='w-6 h-6 text-white' />
+                </div>
+                <h3 className='text-lg font-semibold mb-2'>Passion</h3>
+                <p className='text-gray-600 dark:text-gray-300 text-sm'>Driven by love for clean code and meaningful impact.</p>
+              </motion.div>
+
+              <motion.div
+                className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group'
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+              >
+                <div className='w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300'>
+                  <RocketLaunchIcon className='w-6 h-6 text-white' />
+                </div>
+                <h3 className='text-lg font-semibold mb-2'>Growth</h3>
+                <p className='text-gray-600 dark:text-gray-300 text-sm'>Continuous learning and pushing boundaries forward.</p>
+              </motion.div>
+
+              <motion.div
+                className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group'
+                whileHover={{ y: -5, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, delay: 0.3 }}
+              >
+                <div className='w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300'>
+                  <svg className='w-6 h-6 text-white' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' />
+                  </svg>
+                </div>
                 <h3 className='text-lg font-semibold mb-2'>Collaboration</h3>
-                <p className='text-gray-600 dark:text-gray-300'>Working effectively with teams to achieve shared goals.</p>
-              </div>
-            </div>
+                <p className='text-gray-600 dark:text-gray-300 text-sm'>Building together with teams and communities.</p>
+              </motion.div>
+            </motion.div>
 
             <div className='mt-8 text-center'>
               <Link href='/experience' className='btn-primary mr-4'>View My Experience</Link>

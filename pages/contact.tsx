@@ -2,10 +2,11 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useState, Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline'
+import { CheckIcon, ChevronUpDownIcon, PaperAirplaneIcon, ChatBubbleLeftRightIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import emailjs from '@emailjs/browser'
+import { motion } from 'framer-motion'
 
 const Contact: NextPage = () => {
   const [selectedSubject, setSelectedSubject] = useState<string>('')
@@ -107,6 +108,50 @@ const Contact: NextPage = () => {
             freelance project, or just a friendly chat about technology. Let&apos;s connect!
           </p>
         </div>
+
+        {/* Contact Illustrations */}
+        <motion.div 
+          className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-16'
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <motion.div
+            className='text-center group'
+            whileHover={{ y: -5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <div className='w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 mb-4'>
+              <PaperAirplaneIcon className='w-8 h-8 text-white' />
+            </div>
+            <h3 className='text-lg font-semibold mb-2'>Quick Response</h3>
+            <p className='text-gray-600 dark:text-gray-300 text-sm'>I typically respond within 24 hours</p>
+          </motion.div>
+
+          <motion.div
+            className='text-center group'
+            whileHover={{ y: -5 }}
+            transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+          >
+            <div className='w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 mb-4'>
+              <ChatBubbleLeftRightIcon className='w-8 h-8 text-white' />
+            </div>
+            <h3 className='text-lg font-semibold mb-2'>Open Communication</h3>
+            <p className='text-gray-600 dark:text-gray-300 text-sm'>Let&apos;s discuss your ideas and projects</p>
+          </motion.div>
+
+          <motion.div
+            className='text-center group'
+            whileHover={{ y: -5 }}
+            transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+          >
+            <div className='w-16 h-16 mx-auto bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 mb-4'>
+              <PhoneIcon className='w-8 h-8 text-white' />
+            </div>
+            <h3 className='text-lg font-semibold mb-2'>Multiple Channels</h3>
+            <p className='text-gray-600 dark:text-gray-300 text-sm'>Email, LinkedIn, or direct contact</p>
+          </motion.div>
+        </motion.div>
 
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
           {/* Contact Form */}

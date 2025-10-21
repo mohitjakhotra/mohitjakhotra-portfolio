@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ChevronDownIcon, SparklesIcon } from '@heroicons/react/24/outline'
+import { ChevronDownIcon, CodeBracketIcon, CpuChipIcon, GlobeAltIcon } from '@heroicons/react/24/outline'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -61,9 +61,7 @@ const Home: NextPage = () => {
               Hi, I&apos;m Mohit Jakhotra
             </motion.h1>
             <motion.div variants={itemVariants} className='flex items-center justify-center gap-2 mb-2'>
-              <SparklesIcon className='w-6 h-6 text-indigo-500' />
               <p className='text-xl text-gray-600 dark:text-gray-300'>Full Stack Developer</p>
-              <SparklesIcon className='w-6 h-6 text-indigo-500' />
             </motion.div>
             <motion.p
               className='text-lg text-gray-500 dark:text-gray-400 mb-8'
@@ -82,7 +80,6 @@ const Home: NextPage = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Link href='/projects' className='btn-primary inline-flex items-center gap-2'>
-                <SparklesIcon className='w-5 h-5' />
                 View My Work
               </Link>
             </motion.div>
@@ -137,6 +134,83 @@ const Home: NextPage = () => {
               <p className='text-sm text-gray-500 mt-1'>Vellore Institute of Technology</p>
             </motion.div>
           </motion.div>
+        </motion.section>
+
+        {/* Illustrations Section */}
+        <motion.section
+          className='py-16'
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.6 }}
+        >
+          <div className='text-center mb-12'>
+            <h2 className='text-3xl font-bold mb-4'>What I Do</h2>
+            <p className='text-gray-600 dark:text-gray-300 max-w-2xl mx-auto'>
+              Crafting digital experiences through code, creativity, and innovation
+            </p>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto'>
+            {/* Coding Illustration */}
+            <motion.div
+              className='text-center group'
+              whileHover={{ y: -10 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className='relative mb-6'>
+                <div className='w-24 h-24 mx-auto bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300'>
+                  <CodeBracketIcon className='w-12 h-12 text-white' />
+                </div>
+                <div className='absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center'>
+                  <span className='text-xs font-bold text-gray-800'>{`</>`}</span>
+                </div>
+              </div>
+              <h3 className='text-xl font-semibold mb-3'>Frontend Development</h3>
+              <p className='text-gray-600 dark:text-gray-300 text-sm leading-relaxed'>
+                Building responsive, interactive user interfaces with modern frameworks like React and Next.js
+              </p>
+            </motion.div>
+
+            {/* Backend Illustration */}
+            <motion.div
+              className='text-center group'
+              whileHover={{ y: -10 }}
+              transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+            >
+              <div className='relative mb-6'>
+                <div className='w-24 h-24 mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300'>
+                  <CpuChipIcon className='w-12 h-12 text-white' />
+                </div>
+                <div className='absolute -top-2 -right-2 w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center'>
+                  <span className='text-xs font-bold text-white'>⚡</span>
+                </div>
+              </div>
+              <h3 className='text-xl font-semibold mb-3'>Backend Development</h3>
+              <p className='text-gray-600 dark:text-gray-300 text-sm leading-relaxed'>
+                Creating robust server-side applications with Node.js, databases, and scalable architectures
+              </p>
+            </motion.div>
+
+            {/* Global Collaboration Illustration */}
+            <motion.div
+              className='text-center group'
+              whileHover={{ y: -10 }}
+              transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+            >
+              <div className='relative mb-6'>
+                <div className='w-24 h-24 mx-auto bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300'>
+                  <GlobeAltIcon className='w-12 h-12 text-white' />
+                </div>
+                <div className='absolute -top-2 -right-2 w-8 h-8 bg-red-400 rounded-full flex items-center justify-center'>
+                  <span className='text-xs font-bold text-white'>🌍</span>
+                </div>
+              </div>
+              <h3 className='text-xl font-semibold mb-3'>Full Stack Solutions</h3>
+              <p className='text-gray-600 dark:text-gray-300 text-sm leading-relaxed'>
+                Delivering end-to-end solutions that connect users worldwide through seamless digital experiences
+              </p>
+            </motion.div>
+          </div>
         </motion.section>
       </main>
       <Footer />

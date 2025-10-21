@@ -222,14 +222,14 @@ const Blog: NextPage = () => {
               </svg>
               Follow on Medium
             </motion.a>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link href='/contact' className='btn-outline'>
+            <Link href='/contact' className='btn-outline flex items-center justify-center'>
+              <motion.span
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Get in Touch
-              </Link>
-            </motion.div>
+              </motion.span>
+            </Link>
           </motion.div>
         </motion.div>
       </main>

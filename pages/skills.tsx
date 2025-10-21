@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { CodeBracketIcon, ServerIcon, CircleStackIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -167,12 +168,18 @@ const Skills: NextPage = () => {
                 transition={{ duration: 0.3 }}
               >
                 <motion.h3
-                  className='text-xl font-semibold mb-6'
+                  className='text-xl font-semibold mb-6 flex items-center gap-3'
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.4 }}
                   viewport={{ once: true }}
                 >
+                  <div className='w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center'>
+                    {category.title === 'Frontend Development' && <CodeBracketIcon className='w-5 h-5 text-white' />}
+                    {category.title === 'Backend Development' && <ServerIcon className='w-5 h-5 text-white' />}
+                    {category.title === 'Databases & Tools' && <CircleStackIcon className='w-5 h-5 text-white' />}
+                    {category.title === 'Platforms & Frameworks' && <WrenchScrewdriverIcon className='w-5 h-5 text-white' />}
+                  </div>
                   {category.title}
                 </motion.h3>
                 <div className='space-y-4'>
