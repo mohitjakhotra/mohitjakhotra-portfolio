@@ -126,7 +126,7 @@ const Home: NextPage = () => {
             >
               <h3 className='text-lg font-semibold mb-2'>Current Role</h3>
               <p className='text-gray-600 dark:text-gray-300'>Full Stack Developer at IntVerse.io</p>
-              <p className='text-sm text-gray-500 mt-1'>Pune, Maharashtra</p>
+              <p className='text-sm text-gray-500 mt-1'>Remote - Hyderabad</p>
             </motion.div>
             <motion.div
               className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300'

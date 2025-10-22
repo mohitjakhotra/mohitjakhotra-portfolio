@@ -332,7 +332,7 @@ const Contact: NextPage = () => {
                   </div>
                   <div>
                     <p className='font-medium'>Location</p>
-                    <p className='text-gray-600 dark:text-gray-300'>Pune, Maharashtra, India</p>
+                    <p className='text-gray-600 dark:text-gray-300'>Hyderabad, India</p>
                   </div>
                 </div>
 

@@ -55,7 +55,7 @@ const About: NextPage = () => {
               className='text-xl leading-relaxed mb-6'
               variants={itemVariants}
             >
-              Hi, I&apos;m <strong>Mohit Jakhotra</strong>, a passionate Full Stack Developer based in Pune, Maharashtra.
+              Hi, I&apos;m <strong>Mohit Jakhotra</strong>, a passionate Full Stack Developer based in Hyderabad.
               With over 2 years of experience in web development, I specialize in creating efficient, scalable applications
               that solve real-world problems.
             </motion.p>

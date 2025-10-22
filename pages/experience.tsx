@@ -13,7 +13,7 @@ const Experience: NextPage = () => {
       company: 'IntVerse.io',
       period: 'Aug 2023 – Present',
       type: 'Full-time',
-      location: 'Pune, Maharashtra',
+      location: 'Remote - Hyderabad',
       description: 'Developing scalable web applications and enterprise solutions',
       responsibilities: [
         'Developing user interfaces for Kafka applications and data streaming platforms',
