@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { ChevronDownIcon, CodeBracketIcon, CpuChipIcon, GlobeAltIcon } from '@heroicons/react/24/outline'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -41,7 +42,7 @@ const Home: NextPage = () => {
         >
           <motion.div className='mb-8' variants={itemVariants}>
             <motion.div
-              className='w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg'
+              className='w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg overflow-hidden'
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -50,8 +51,24 @@ const Home: NextPage = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+                className='w-full h-full'
               >
-                MJ
+                <Image
+                  src='/profile.png'
+                  alt='Mohit Jakhotra - Professional Photo'
+                  width={128}
+                  height={128}
+                  className='w-full h-full object-cover rounded-full'
+                  onError={(e) => {
+                    // Hide the image and show MJ fallback
+                    e.currentTarget.style.display = 'none';
+                    const fallback = document.createElement('div');
+                    fallback.textContent = 'MJ';
+                    fallback.className = 'text-white text-4xl font-bold flex items-center justify-center w-full h-full';
+                    e.currentTarget.parentElement?.appendChild(fallback);
+                  }}
+                  priority
+                />
               </motion.div>
             </motion.div>
             <motion.h1
