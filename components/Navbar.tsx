@@ -50,7 +50,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <Link href='/' className='text-2xl font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors'>
+            <Link href='/' className='text-2xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors'>
               MJ
             </Link>
           </motion.div>
@@ -67,12 +67,12 @@ const Navbar = () => {
                   href={item.href}
                   className={`inline-flex items-center px-1 pt-1 text-sm font-medium transition-all duration-200 relative group ${
                     router.pathname === item.href
-                      ? 'text-indigo-600 dark:text-indigo-400'
-                      : 'text-gray-900 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400'
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400'
                   }`}
                 >
                   {item.label}
-                  <span className={`absolute bottom-0 left-0 h-0.5 bg-indigo-600 dark:bg-indigo-400 transition-all duration-300 ${
+                  <span className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 ${
                     router.pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}></span>
                 </Link>
@@ -83,7 +83,7 @@ const Navbar = () => {
             <motion.button
               onClick={() => setMenuOpen(!menuOpen)}
               type='button'
-              className='bg-gray-100 dark:bg-gray-800 p-2 rounded-md inline-flex items-center justify-center text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors mobile-menu-container'
+              className='bg-gray-100 dark:bg-gray-800 p-2 rounded-md inline-flex items-center justify-center text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors mobile-menu-container'
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               aria-expanded={menuOpen}

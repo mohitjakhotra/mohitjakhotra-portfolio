@@ -65,7 +65,7 @@ const Footer = () => {
                   href={social.href}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors'
+                  className='text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors'
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ delay: 0.2 + index * 0.1, type: "spring", stiffness: 300 }}
@@ -97,7 +97,7 @@ const Footer = () => {
                   transition={{ delay: 0.4 + index * 0.1, duration: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  <Link href={link.href} className='text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm transition-colors'>
+                  <Link href={link.href} className='text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors'>
                     {link.label}
                   </Link>
                 </motion.li>
@@ -122,7 +122,7 @@ const Footer = () => {
                   transition={{ delay: 0.6 + index * 0.1, duration: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  <Link href={link.href} className='text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm transition-colors'>
+                  <Link href={link.href} className='text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors'>
                     {link.label}
                   </Link>
                 </motion.li>

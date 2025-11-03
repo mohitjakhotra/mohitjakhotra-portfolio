@@ -2,10 +2,13 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { TypeAnimation } from 'react-type-animation';
+
 import Image from 'next/image'
 import { ChevronDownIcon, CodeBracketIcon, CpuChipIcon, GlobeAltIcon } from '@heroicons/react/24/outline'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+
 
 const Home: NextPage = () => {
   const containerVariants = {
@@ -42,7 +45,7 @@ const Home: NextPage = () => {
         >
           <motion.div className='mb-8' variants={itemVariants}>
             <motion.div
-              className='w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg overflow-hidden'
+              className='w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg overflow-hidden'
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -71,22 +74,46 @@ const Home: NextPage = () => {
                 />
               </motion.div>
             </motion.div>
+            {/* Static Name */}
             <motion.h1
-              className='text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'
+              className='text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent'
               variants={itemVariants}
             >
               Hi, I&apos;m Mohit Jakhotra
             </motion.h1>
-            <motion.div variants={itemVariants} className='flex items-center justify-center gap-2 mb-2'>
-              <p className='text-xl text-gray-600 dark:text-gray-300'>Full Stack Developer</p>
+            
+            {/* Typewriter Animation for Roles */}
+            <motion.div variants={itemVariants} className='mb-4'>
+              <TypeAnimation
+                sequence={[
+                  'Full Stack Developer',
+                  2000,
+                  'React & Node.js Expert', 
+                  2000,
+                  'Kafka Developer',
+                  2000,
+                  'Problem Solver',
+                  2000,
+                ]}
+                speed={50}
+                className='text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium'
+                repeat={Infinity}
+                cursor={true}
+                style={{
+                  display: 'inline-block',
+                  minHeight: '1.5em'
+                }}
+              />
             </motion.div>
+            
+            {/* Static Tagline */}
             <motion.p
-              className='text-lg text-gray-500 dark:text-gray-400 mb-8'
+              className='text-lg text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto'
               variants={itemVariants}
             >
               Building scalable web applications with modern technologies
             </motion.p>
-          </motion.div>
+          </motion.div> 
 
           <motion.div
             className='flex flex-col sm:flex-row justify-center gap-4 mb-12'
@@ -175,7 +202,7 @@ const Home: NextPage = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className='relative mb-6'>
-                <div className='w-24 h-24 mx-auto bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300'>
+                <div className='w-24 h-24 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300'>
                   <CodeBracketIcon className='w-12 h-12 text-white' />
                 </div>
                 <div className='absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center'>
@@ -195,7 +222,7 @@ const Home: NextPage = () => {
               transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
             >
               <div className='relative mb-6'>
-                <div className='w-24 h-24 mx-auto bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300'>
+                <div className='w-24 h-24 mx-auto bg-gradient-to-br from-gray-500 to-gray-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300'>
                   <CpuChipIcon className='w-12 h-12 text-white' />
                 </div>
                 <div className='absolute -top-2 -right-2 w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center'>
@@ -215,7 +242,7 @@ const Home: NextPage = () => {
               transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
             >
               <div className='relative mb-6'>
-                <div className='w-24 h-24 mx-auto bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300'>
+                <div className='w-24 h-24 mx-auto bg-gradient-to-br from-blue-400 to-gray-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300'>
                   <GlobeAltIcon className='w-12 h-12 text-white' />
                 </div>
                 <div className='absolute -top-2 -right-2 w-8 h-8 bg-red-400 rounded-full flex items-center justify-center'>

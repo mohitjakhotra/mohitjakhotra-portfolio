@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowTopRightOnSquareIcon, CodeBracketIcon } from '@heroicons/react/24/outline'
+// import { ArrowTopRightOnSquareIcon, CodeBracketIcon } from '@heroicons/react/24/outline' // Commented out - will uncomment when links are ready
 
 type Project = {
   id: number
@@ -21,7 +21,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
     >
       <div>
         <motion.h2
-          className='text-xl font-semibold mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors'
+          className='text-xl font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
@@ -45,7 +45,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           {project.techStack.map((tech, index) => (
             <motion.span
               key={tech}
-              className='inline-block mr-2 mb-2 bg-indigo-100 dark:bg-indigo-700 text-indigo-800 dark:text-indigo-100 text-xs font-medium px-3 py-1 rounded-full hover:bg-indigo-200 dark:hover:bg-indigo-600 transition-colors cursor-default'
+              className='inline-block mr-2 mb-2 bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-100 text-xs font-medium px-3 py-1 rounded-full hover:bg-blue-200 dark:hover:bg-blue-600 transition-colors cursor-default'
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.4 + index * 0.1, type: "spring", stiffness: 300 }}
@@ -62,12 +62,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        {project.github && (
+        {/* Commented out GitHub and Live Demo links - will add back when links are ready */}
+        {/* {project.github && (
           <motion.a
             href={project.github}
             target='_blank'
             rel='noopener noreferrer'
-            className='flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm transition-colors'
+            className='flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm transition-colors'
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -80,14 +81,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
             href={project.demo}
             target='_blank'
             rel='noopener noreferrer'
-            className='flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm transition-colors'
+            className='flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm transition-colors'
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <ArrowTopRightOnSquareIcon className='w-4 h-4' />
             Live Demo
           </motion.a>
-        )}
+        )} */}
       </motion.div>
     </motion.div>
   )

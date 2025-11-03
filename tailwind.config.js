@@ -3,8 +3,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0d9488',
-        accent: '#14b8a6'
+        primary: '#2563eb',      // Professional blue (hardworking, reliable)
+        accent: '#3b82f6',       // Lighter blue accent (efficient, clean)
+        neutral: '#64748b',      // Slate gray (minimalist, simple)
       },
       fontFamily: {
         sans: ['Inter', 'Helvetica', 'Arial', 'sans-serif']

@@ -116,7 +116,7 @@ const Blog: NextPage = () => {
                     transition={{ delay: 0.3 }}
                   >
                     <span className='flex items-center gap-1'>
-                      <span className='w-2 h-2 bg-indigo-500 rounded-full animate-pulse'></span>
+                      <span className='w-2 h-2 bg-blue-500 rounded-full animate-pulse'></span>
                       {post.platform}
                     </span>
                     <span>{post.date}</span>
@@ -143,7 +143,7 @@ const Blog: NextPage = () => {
                 {post.tags.map((tag, tagIndex) => (
                   <motion.span
                     key={tag}
-                    className='bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-3 py-1 rounded-full text-sm font-medium hover:bg-indigo-200 dark:hover:bg-indigo-700 transition-colors cursor-default'
+                    className='bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors cursor-default'
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.6 + tagIndex * 0.1, type: "spring", stiffness: 300 }}
@@ -164,7 +164,7 @@ const Blog: NextPage = () => {
                   href={post.link}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium flex items-center gap-2'
+                  className='text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium flex items-center gap-2'
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -177,7 +177,7 @@ const Blog: NextPage = () => {
         </motion.div>
 
         <motion.div
-          className='mt-12 text-center bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg p-8'
+          className='mt-12 text-center bg-gradient-to-r from-blue-50 to-blue-50 dark:from-blue-900/20 dark:to-blue-900/20 rounded-lg p-8'
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

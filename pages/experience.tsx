@@ -106,7 +106,7 @@ const Experience: NextPage = () => {
                     {exp.title}
                   </motion.h2>
                   <motion.p
-                    className='text-lg text-indigo-600 dark:text-indigo-400 mb-2'
+                    className='text-lg text-blue-600 dark:text-blue-400 mb-2'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
@@ -178,7 +178,7 @@ const Experience: NextPage = () => {
                   {exp.technologies.map((tech, idx) => (
                     <motion.span
                       key={tech}
-                      className='bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-3 py-1 rounded-full text-sm font-medium'
+                      className='bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium'
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.9 + idx * 0.05, type: "spring", stiffness: 300 }}
@@ -224,7 +224,7 @@ const Experience: NextPage = () => {
                 viewport={{ once: true }}
               >
                 <h3 className='text-lg font-semibold mb-2'>Master of Computer Applications (MCA)</h3>
-                <p className='text-indigo-600 dark:text-indigo-400 mb-1'>Vellore Institute of Technology</p>
+                <p className='text-blue-600 dark:text-blue-400 mb-1'>Vellore Institute of Technology</p>
                 <p className='text-sm text-gray-500'>Aug 2024 - Ongoing</p>
               </motion.div>
               <motion.div
@@ -234,7 +234,7 @@ const Experience: NextPage = () => {
                 viewport={{ once: true }}
               >
                 <h3 className='text-lg font-semibold mb-2'>Bachelor of Computer Applications (BCA)</h3>
-                <p className='text-indigo-600 dark:text-indigo-400 mb-1'>Brihan Maharashtra College of Commerce</p>
+                <p className='text-blue-600 dark:text-blue-400 mb-1'>Brihan Maharashtra College of Commerce</p>
                 <p className='text-sm text-gray-500'>Jul 2019 - May 2022</p>
               </motion.div>
             </div>
