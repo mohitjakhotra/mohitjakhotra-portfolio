@@ -33,7 +33,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const router = useRouter()
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait" initial={true}>
       <motion.div
         key={router.pathname}
         initial="initial"

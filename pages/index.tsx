@@ -11,21 +11,22 @@ import Footer from '../components/Footer'
 
 
 const Home: NextPage = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.2
-      }
-    }
-  }
+  // Removed conflicting animation variants - PageTransition handles page-level animations
+  // const containerVariants = {
+  //   hidden: { opacity: 0 },
+  //   visible: {
+  //     opacity: 1,
+  //     transition: {
+  //       duration: 0.6,
+  //       staggerChildren: 0.2
+  //     }
+  //   }
+  // }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 }
-  }
+  // const itemVariants = {
+  //   hidden: { opacity: 0, y: 30 },
+  //   visible: { opacity: 1, y: 0 }
+  // }
 
   return (
     <>
@@ -39,16 +40,19 @@ const Home: NextPage = () => {
       <main className='min-h-screen max-w-5xl mx-auto px-4 py-12'>
         <motion.section
           className='text-center'
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          // Removed conflicting animation props - PageTransition handles page-level animations
+          // variants={containerVariants}
+          // initial="hidden"
+          // animate="visible"
         >
-          <motion.div className='mb-8' variants={itemVariants}>
+          <motion.div className='mb-8' /* variants={itemVariants} */>
             <motion.div
               className='w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg overflow-hidden'
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5, type: "spring", stiffness: 200 }}
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300 }}
             >
               <motion.div
                 initial={{ scale: 0 }}
@@ -77,13 +81,18 @@ const Home: NextPage = () => {
             {/* Static Name */}
             <motion.h1
               className='text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent'
-              variants={itemVariants}
+              // variants={itemVariants}
             >
               Hi, I&apos;m Mohit Jakhotra
             </motion.h1>
             
             {/* Typewriter Animation for Roles */}
-            <motion.div variants={itemVariants} className='mb-4'>
+            <motion.div 
+              className='mb-4'
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+            >
               <TypeAnimation
                 sequence={[
                   'Full Stack Developer',
@@ -109,7 +118,7 @@ const Home: NextPage = () => {
             {/* Static Tagline */}
             <motion.p
               className='text-lg text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto'
-              variants={itemVariants}
+              // variants={itemVariants}
             >
               Building scalable web applications with modern technologies
             </motion.p>
@@ -117,7 +126,9 @@ const Home: NextPage = () => {
 
           <motion.div
             className='flex flex-col sm:flex-row justify-center gap-4 mb-12'
-            variants={itemVariants}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -140,16 +151,16 @@ const Home: NextPage = () => {
 
           <motion.div
             className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto'
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
+            transition={{ delay: 1.0, duration: 0.6 }}
           >
             <motion.div
               className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300'
-              whileHover={{ y: -5 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0 }}
+              transition={{ delay: 1.2, duration: 0.4 }}
+              whileHover={{ y: -5 }}
             >
               <h3 className='text-lg font-semibold mb-2'>Current Role</h3>
               <p className='text-gray-600 dark:text-gray-300'>Full Stack Developer at IntVerse.io</p>
@@ -157,10 +168,10 @@ const Home: NextPage = () => {
             </motion.div>
             <motion.div
               className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300'
-              whileHover={{ y: -5 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
+              transition={{ delay: 1.4, duration: 0.4 }}
+              whileHover={{ y: -5 }}
             >
               <h3 className='text-lg font-semibold mb-2'>Experience</h3>
               <p className='text-gray-600 dark:text-gray-300'>2+ Years</p>
@@ -168,10 +179,10 @@ const Home: NextPage = () => {
             </motion.div>
             <motion.div
               className='bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300'
-              whileHover={{ y: -5 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4 }}
+              transition={{ delay: 1.6, duration: 0.4 }}
+              whileHover={{ y: -5 }}
             >
               <h3 className='text-lg font-semibold mb-2'>Education</h3>
               <p className='text-gray-600 dark:text-gray-300'>MCA (Ongoing)</p>
@@ -183,9 +194,9 @@ const Home: NextPage = () => {
         {/* Illustrations Section */}
         <motion.section
           className='py-16'
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
+          transition={{ delay: 1.8, duration: 0.6 }}
         >
           <div className='text-center mb-12'>
             <h2 className='text-3xl font-bold mb-4'>What I Do</h2>
