@@ -50,8 +50,8 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <Link href='/' className='text-2xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors'>
-              MJ
+            <Link href='/' className='text-2xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-mono'>
+              &lt;/&gt;
             </Link>
           </motion.div>
           <div className='hidden sm:flex sm:items-center sm:space-x-8'>
