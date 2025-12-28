@@ -1,0 +1,18 @@
+
+[build]
+command = "npm run build"
+publish = ".next"
+
+[build.environment]
+SECRETS_SCAN_ENABLED = "false"
+
+[build.processing.secrets_scan]
+omit_keys = [
+  "NEXT_PUBLIC_EMAILJS_SERVICE_ID",
+  "NEXT_PUBLIC_EMAILJS_TEMPLATE_ID",
+  "NEXT_PUBLIC_EMAILJS_PUBLIC_KEY"
+]
+omit_paths = [
+  ".next",
+  ".netlify"
+]

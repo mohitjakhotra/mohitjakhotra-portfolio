@@ -51,12 +51,24 @@ npm run dev
 
 ## 🚀 Deployment
 
-This project is optimized for deployment on Vercel:
+This project is optimized for deployment on **Vercel** or **Netlify**:
 
+### Vercel Deployment
 1. Push your code to GitHub
 2. Connect your repository to Vercel
 3. Vercel will automatically detect Next.js and deploy
 4. Add your custom domain in Vercel settings
+
+### Netlify Deployment
+1. Push your code to GitHub
+2. Connect your repository to Netlify
+3. Configure build settings:
+   - Build command: `npm run build`
+   - Publish directory: `.next`
+4. Add environment variables in Netlify dashboard (see EmailJS setup above)
+5. Deploy and add your custom domain
+
+**Note**: Environment variables must be set in the deployment platform's dashboard, not committed to the repository.
 
 ## 📁 Project Structure
 
@@ -105,12 +117,22 @@ Before deploying, make sure to:
   2. Create an email service (Gmail, Outlook, etc.)
   3. Create an email template with variables: `{{from_name}}`, `{{from_email}}`, `{{subject}}`, `{{message}}`, `{{to_name}}`
   4. Copy your Service ID, Template ID, and Public Key
-  5. Update the constants in `pages/contact.tsx`:
-     ```typescript
-     const SERVICE_ID = 'your_service_id_here'
-     const TEMPLATE_ID = 'your_template_id_here' 
-     const PUBLIC_KEY = 'your_public_key_here'
-     ```
+  
+  **For Local Development:**
+  - Copy `.env.local.example` to `.env.local`
+  - Update the values in `.env.local` with your EmailJS credentials
+  
+  **For Netlify Deployment:**
+  - Go to your Netlify dashboard → Site Settings → Environment Variables
+  - Add these environment variables:
+    - `NEXT_PUBLIC_EMAILJS_SERVICE_ID` = your_service_id
+    - `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` = your_template_id
+    - `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` = your_public_key
+  
+  **For Vercel Deployment:**
+  - Go to your Vercel dashboard → Project Settings → Environment Variables
+  - Add the same environment variables as above
+
 - [ ] Add your CV/resume as `public/Mohit-Jakhotra-CV.pdf`
 - [ ] Replace the avatar placeholder in `pages/index.tsx` with your actual photo
 - [ ] Verify all GitHub repository links are accessible

@@ -55,11 +55,17 @@ const Contact: NextPage = () => {
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
-    // TODO: Set up EmailJS account at https://www.emailjs.com/
-    // Replace the service ID, template ID, and public key below with your EmailJS credentials
-    const SERVICE_ID = 'service_d5yobdz' // Get from EmailJS dashboard
-    const TEMPLATE_ID = 'template_q6hdn4t' // Create a template in EmailJS
-    const PUBLIC_KEY = 'xJHbH6idsn_vIY_Rw' // Get from EmailJS dashboard
+    // Get EmailJS credentials from environment variables
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+
+    // Check if credentials are configured (fail silently if not)
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      setSubmitStatus('error')
+      setIsSubmitting(false)
+      return
+    }
 
     const form = e.currentTarget
     const formData = new FormData(form)
