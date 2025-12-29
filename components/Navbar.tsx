@@ -232,7 +232,7 @@ const Navbar = () => {
                 transition={{ delay: 0.5, duration: 0.2 }}
                 className='flex justify-center space-x-4 pt-2'
               >
-                {socialLinks.map((social, index) => (
+                {socialLinks.map((social) => (
                   <a
                     key={social.href}
                     href={social.href}

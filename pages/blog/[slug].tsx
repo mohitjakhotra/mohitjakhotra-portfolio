@@ -6,7 +6,6 @@ import sanitizeHtml from 'sanitize-html'
 import { MEDIUM_FEED } from '../../lib/constants'
 import { generatePostSlug } from '../../lib/slug'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 
 type PostDetailProps = {
   title: string

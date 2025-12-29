@@ -1,4 +1,11 @@
 // Helper utilities to produce stable, human-friendly slugs for blog posts
+
+interface FeedItem {
+  link?: string
+  guid?: string
+  title?: string
+}
+
 export function slugify(input: string): string {
   return String(input || '')
     .toLowerCase()
@@ -23,7 +30,7 @@ export function slugify(input: string): string {
  * 3. Fall back to a slugified `title`.
  * 4. Final fallback: `post-<index>` or timestamp.
  */
-export function generatePostSlug(item: any, index?: number): string {
+export function generatePostSlug(item: FeedItem, index?: number): string {
   const link = item?.link ? String(item.link) : ''
   const guid = item?.guid ? String(item.guid) : ''
   const title = item?.title ? String(item.title) : ''
@@ -37,7 +44,7 @@ export function generatePostSlug(item: any, index?: number): string {
       candidate = decodeURIComponent(candidate)
       const s = slugify(candidate)
       if (s) return s
-    } catch (e) {
+    } catch {
       // ignore and continue
     }
   }
@@ -50,7 +57,7 @@ export function generatePostSlug(item: any, index?: number): string {
       const candidate = segments.length ? segments[segments.length - 1] : url.hostname
       const s = slugify(candidate)
       if (s) return s
-    } catch (e) {
+    } catch {
       const s = slugify(guid)
       if (s) return s
     }
