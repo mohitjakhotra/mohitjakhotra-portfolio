@@ -109,7 +109,7 @@ const Projects: NextPage = () => {
 				<title>Projects | Mohit Jakhotra</title>
 				<meta
 					name='description'
-					content='Portfolio of projects by Mohit Jakhotra - Full Stack Developer. Featuring QR code menu system, Kafka dashboard, and enterprise integrations.'
+					content='Portfolio of projects by Mohit Jakhotra - Software Engineer. Featuring QR code menu system, Kafka dashboard, and enterprise integrations.'
 				/>
 				<meta
 					name='keywords'
@@ -164,7 +164,7 @@ const Projects: NextPage = () => {
 						Featured Projects
 					</motion.h2>
 					<motion.div
-						className='grid grid-cols-1 lg:grid-cols-2 gap-8'
+						className='grid grid-cols-1 lg:grid-cols-2 gap-8 auto-rows-fr'
 						variants={containerVariants}
 						initial='hidden'
 						whileInView='visible'
@@ -173,11 +173,12 @@ const Projects: NextPage = () => {
 						{featuredProjects.map((project) => (
 							<motion.div
 								key={project.id}
+								className='h-full'
 								variants={itemVariants}
 								whileHover={{ y: -5 }}
 								transition={{ duration: 0.3 }}
 							>
-								<div className='bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border-2 border-blue-200 dark:border-blue-800'>
+								<div className='h-full flex flex-col'>
 									<div className='flex justify-between items-start mb-4'>
 										<span className='bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium'>
 											{project.category}
@@ -212,7 +213,7 @@ const Projects: NextPage = () => {
 						Other Projects
 					</motion.h2>
 					<motion.div
-						className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+						className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr'
 						variants={containerVariants}
 						initial='hidden'
 						whileInView='visible'
@@ -221,6 +222,7 @@ const Projects: NextPage = () => {
 						{otherProjects.map((project) => (
 							<motion.div
 								key={project.id}
+								className='h-full flex flex-col'
 								variants={itemVariants}
 								whileHover={{ y: -5 }}
 								transition={{ duration: 0.3 }}
@@ -230,7 +232,9 @@ const Projects: NextPage = () => {
 										{project.category}
 									</span>
 								</div>
-								<ProjectCard project={project} />
+								<div className='h-full'>
+								  <ProjectCard project={project} />
+								</div>
 							</motion.div>
 						))}
 					</motion.div>

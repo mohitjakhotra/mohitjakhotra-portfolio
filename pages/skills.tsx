@@ -101,7 +101,7 @@ const Skills: NextPage = () => {
     <>
       <Head>
         <title>Skills & Certifications | Mohit Jakhotra</title>
-        <meta name='description' content='Technical skills and certifications of Mohit Jakhotra - Full Stack Developer proficient in React, Node.js, Kafka, and modern web technologies.' />
+        <meta name='description' content='Technical skills and certifications of Mohit Jakhotra - Software Engineer proficient in React, Node.js, Kafka, and modern web technologies.' />
         <meta name='keywords' content='Mohit Jakhotra skills, React developer, Node.js, Kafka, TypeScript, Full Stack certifications' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>

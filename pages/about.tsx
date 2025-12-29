@@ -27,8 +27,8 @@ const About: NextPage = () => {
     <>
       <Head>
         <title>About Me | Mohit Jakhotra</title>
-        <meta name='description' content='About Mohit Jakhotra - Full Stack Developer passionate about building scalable web applications and modern user experiences.' />
-        <meta name='keywords' content='Mohit Jakhotra, Full Stack Developer, React, Node.js, Kafka, Pune' />
+        <meta name='description' content='About Mohit Jakhotra - Software Engineer passionate about building scalable web applications and modern user experiences.' />
+        <meta name='keywords' content='Mohit Jakhotra, Software Engineer, React, Node.js, Kafka, Pune' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       <Navbar />
@@ -55,7 +55,7 @@ const About: NextPage = () => {
               className='text-xl leading-relaxed mb-6'
               variants={itemVariants}
             >
-              Hi, I&apos;m <strong>Mohit Jakhotra</strong>, a passionate Full Stack Developer based in Hyderabad.
+              Hi, I&apos;m <strong>Mohit Jakhotra</strong>, a passionate Software Engineer based in Hyderabad.
               With over 2 years of experience in web development, I specialize in creating efficient, scalable applications
               that solve real-world problems.
             </motion.p>
@@ -79,7 +79,7 @@ const About: NextPage = () => {
             </motion.p>
 
             <motion.p variants={itemVariants}>
-              Currently, I work as a Full Stack Developer at IntVerse.io, where I develop user interfaces for Kafka applications,
+              Currently, I work as a Software Engineer at IntVerse.io, where I develop user interfaces for Kafka applications,
               maintain in-house plugins using Backstage.io, and create proofs-of-concept for integrating ServiceNow and
               ticketing services. I believe in writing clean, testable code and implementing solutions that make a tangible
               impact on business operations.

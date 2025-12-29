@@ -1,23 +1,24 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { LinkIcon, CodeBracketIcon, NewspaperIcon } from '@heroicons/react/24/outline'
+import { MEDIUM_PROFILE, GITHUB_PROFILE, LINKEDIN_PROFILE } from '../lib/constants'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
     {
-      href: 'https://linkedin.com/in/mohitjakhotra',
+      href: LINKEDIN_PROFILE,
       icon: LinkIcon,
       label: 'LinkedIn'
     },
     {
-      href: 'https://github.com/mohitjakhotra',
+      href: GITHUB_PROFILE,
       icon: CodeBracketIcon,
       label: 'GitHub'
     },
     {
-      href: 'https://medium.com/@mohitjakhotra',
+      href: MEDIUM_PROFILE,
       icon: NewspaperIcon,
       label: 'Medium'
     }
@@ -55,7 +56,7 @@ const Footer = () => {
           >
             <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-2'>Mohit Jakhotra</h3>
             <p className='text-gray-600 dark:text-gray-300 text-sm mb-4'>
-              Full Stack Developer passionate about creating efficient, scalable web applications
+              Software Engineer passionate about creating efficient, scalable web applications
               and solving complex problems with modern technologies.
             </p>
             <div className='flex space-x-4'>

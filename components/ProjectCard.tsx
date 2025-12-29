@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-// import { ArrowTopRightOnSquareIcon, CodeBracketIcon } from '@heroicons/react/24/outline' // Commented out - will uncomment when links are ready
+import { ArrowTopRightOnSquareIcon, CodeBracketIcon } from '@heroicons/react/24/outline'
 
 type Project = {
   id: number
@@ -13,7 +13,7 @@ type Project = {
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <motion.div
-      className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700'
+      className='group h-full bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700'
       whileHover={{ y: -5, scale: 1.02 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -62,33 +62,39 @@ const ProjectCard = ({ project }: { project: Project }) => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        {/* Commented out GitHub and Live Demo links - will add back when links are ready */}
-        {/* {project.github && (
+        {project.github && (
           <motion.a
             href={project.github}
             target='_blank'
             rel='noopener noreferrer'
             className='flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm transition-colors'
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            aria-label={`${project.title} - GitHub repository`}
           >
             <CodeBracketIcon className='w-4 h-4' />
-            GitHub
+            <span>Code</span>
           </motion.a>
         )}
+
         {project.demo && (
           <motion.a
             href={project.demo}
             target='_blank'
             rel='noopener noreferrer'
             className='flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-sm transition-colors'
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            aria-label={`${project.title} - Live demo`}
           >
             <ArrowTopRightOnSquareIcon className='w-4 h-4' />
-            Live Demo
+            <span>Live</span>
           </motion.a>
-        )} */}
+        )}
+
+        {!project.github && !project.demo && (
+          <span className='text-sm text-gray-500 dark:text-gray-400'>No public links</span>
+        )}
       </motion.div>
     </motion.div>
   )

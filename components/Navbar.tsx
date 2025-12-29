@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, DocumentIcon, LinkIcon, CodeBracketIcon, NewspaperIcon } from '@heroicons/react/24/outline'
+import { MEDIUM_PROFILE, GITHUB_PROFILE, LINKEDIN_PROFILE } from '../lib/constants'
 import { useRouter } from 'next/router'
 
 const Navbar = () => {
@@ -16,6 +17,24 @@ const Navbar = () => {
     { href: '/projects', label: 'Projects' },
     { href: '/blog', label: 'Blog' },
     { href: '/contact', label: 'Contact' },
+  ]
+
+  const socialLinks = [
+    {
+      href: LINKEDIN_PROFILE,
+      icon: LinkIcon,
+      label: 'LinkedIn'
+    },
+    {
+      href: GITHUB_PROFILE,
+      icon: CodeBracketIcon,
+      label: 'GitHub'
+    },
+    {
+      href: MEDIUM_PROFILE,
+      icon: NewspaperIcon,
+      label: 'Medium'
+    }
   ]
 
   // Close mobile menu when route changes
@@ -54,6 +73,8 @@ const Navbar = () => {
               &lt;/&gt;
             </Link>
           </motion.div>
+          
+          {/* Desktop Navigation */}
           <div className='hidden sm:flex sm:items-center sm:space-x-8'>
             {navItems.map((item, index) => (
               <motion.div
@@ -78,6 +99,43 @@ const Navbar = () => {
                 </Link>
               </motion.div>
             ))}
+          </div>
+
+          {/* Resume and Social Links */}
+          <div className='hidden sm:flex sm:items-center sm:space-x-4'>
+            <motion.a
+              href='/mohitjakhotra.pdf'
+              download
+              className='inline-flex items-center px-3 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 border border-blue-600 dark:border-blue-400 rounded-lg hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 transition-all duration-200'
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.3 }}
+            >
+              <DocumentIcon className='w-4 h-4 mr-2' />
+              Resume
+            </motion.a>
+            
+            <div className='flex items-center space-x-2'>
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={social.href}
+                  href={social.href}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800'
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 + index * 0.1, duration: 0.3 }}
+                >
+                  <social.icon className='w-5 h-5' />
+                  <span className='sr-only'>{social.label}</span>
+                </motion.a>
+              ))}
+            </div>
           </div>
           <div className='-mr-2 flex items-center sm:hidden'>
             <motion.button
@@ -139,8 +197,8 @@ const Navbar = () => {
                     href={item.href}
                     className={`block px-3 py-2 text-base font-medium rounded-md transition-all duration-200 ${
                       router.pathname === item.href
-                        ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/50'
-                        : 'text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/50'
+                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/50'
+                        : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/50'
                     }`}
                     onClick={() => setMenuOpen(false)}
                   >
@@ -148,6 +206,46 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
+              
+              {/* Mobile Resume Link */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.2 }}
+                className='pt-2 border-t border-gray-200 dark:border-gray-700'
+              >
+                <a
+                  href='/mohitjakhotra.pdf'
+                  download
+                  className='flex items-center px-3 py-2 text-base font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/50 rounded-md transition-all duration-200'
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <DocumentIcon className='w-5 h-5 mr-3' />
+                  Download Resume
+                </a>
+              </motion.div>
+              
+              {/* Mobile Social Links */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.2 }}
+                className='flex justify-center space-x-4 pt-2'
+              >
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-md hover:bg-gray-100 dark:hover:bg-gray-800'
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <social.icon className='w-6 h-6' />
+                    <span className='sr-only'>{social.label}</span>
+                  </a>
+                ))}
+              </motion.div>
             </div>
           </motion.div>
         )}

@@ -9,7 +9,7 @@ const Experience: NextPage = () => {
   const experiences = [
     {
       id: 1,
-      title: 'Full Stack Developer',
+      title: 'Software Engineer',
       company: 'IntVerse.io',
       period: 'Aug 2023 – Present',
       type: 'Full-time',
@@ -65,8 +65,8 @@ const Experience: NextPage = () => {
     <>
       <Head>
         <title>Experience | Mohit Jakhotra</title>
-        <meta name='description' content='Professional experience of Mohit Jakhotra - Full Stack Developer with expertise in React, Node.js, and enterprise applications.' />
-        <meta name='keywords' content='Mohit Jakhotra experience, Full Stack Developer, IntVerse.io, DeepThought EduTech' />
+        <meta name='description' content='Professional experience of Mohit Jakhotra - Software Engineer with expertise in React, Node.js, and enterprise applications.' />
+        <meta name='keywords' content='Mohit Jakhotra experience, Software Engineer, IntVerse.io, DeepThought EduTech' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       <Navbar />

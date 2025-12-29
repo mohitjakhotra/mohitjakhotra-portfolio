@@ -2,11 +2,54 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { MEDIUM_PROFILE, MEDIUM_FEED } from '../lib/constants'
+import { generatePostSlug } from '../lib/slug'
+import type { GetStaticProps } from 'next'
 
-const Blog: NextPage = () => {
+type Post = {
+  id: string | number
+  title: string
+  link: string
+  date?: string
+  excerpt?: string
+  tags?: string[]
+  readTime?: string
+  slug?: string
+  featuredImage?: string
+}
+
+function FeaturedImage({ src, title }: { src?: string; title: string }) {
+  const [failed, setFailed] = useState(false)
+
+  if (!src || failed) {
+    return (
+      <div className='w-full max-h-48 h-48 flex items-center justify-center rounded-md overflow-hidden bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-700'>
+        <div className='text-center px-4'>
+          <svg className='mx-auto w-10 h-10 text-gray-400 dark:text-gray-300' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+            <path d='M19 3H5c-1.1 0-2 .9-2 2v14a1 1 0 0 0 1.6.8L12 15l7.4 4.8c.4.27 1.06.06 1.06-.5V5c0-1.1-.9-2-2-2z' />
+          </svg>
+          <p className='mt-2 text-sm text-gray-600 dark:text-gray-300 truncate'>{title}</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    // eslint-disable-next-line jsx-a11y/img-redundant-alt
+    <img
+      src={src}
+      alt={title}
+      className='w-full max-h-48 h-48 object-cover rounded-md'
+      onError={() => setFailed(true)}
+    />
+  )
+}
+
+const Blog: NextPage<{ posts: Post[] }> = ({ posts }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -28,38 +71,19 @@ const Blog: NextPage = () => {
     }
   }
 
-  const publications = [
-    {
-      id: 1,
-      title: 'How to Get Done Work: Productivity Insights for Developers',
-      platform: 'Medium',
-      date: '2024',
-      excerpt: 'Exploring effective strategies for managing workload, prioritizing tasks, and maintaining productivity in fast-paced development environments.',
-      tags: ['Productivity', 'Career', 'Development'],
-      link: 'https://medium.com/@mohitjakhotra/how-to-get-done-work',
-      readTime: '5 min read'
-    },
-    {
-      id: 2,
-      title: 'P vs NP Problem: The Importance of Mathematics in Computer Science',
-      platform: 'Medium',
-      date: '2024',
-      excerpt: 'A deep dive into one of computer science\'s most famous unsolved problems and its implications for algorithm design and computational complexity.',
-      tags: ['Computer Science', 'Mathematics', 'Algorithms'],
-      link: 'https://medium.com/@mohitjakhotra/p-vs-np-importance-of-mathematics',
-      readTime: '8 min read'
-    },
-    {
-      id: 3,
-      title: 'Content to Process in Learning: Reflections on Effective Study Techniques',
-      platform: 'Medium',
-      date: '2023',
-      excerpt: 'Personal reflections on transforming passive learning into active processing, with practical techniques for better knowledge retention and application.',
-      tags: ['Learning', 'Education', 'Personal Development'],
-      link: 'https://medium.com/@mohitjakhotra/content-to-process-in-learning',
-      readTime: '6 min read'
-    }
-  ]
+  // `posts` now comes from getStaticProps (Medium RSS)
+  const publications = posts.map((p, idx) => ({
+    id: p.id ?? idx,
+    title: p.title,
+    platform: 'Medium',
+    date: p.date ?? '',
+    excerpt: p.excerpt ?? '',
+    tags: p.tags ?? [],
+    link: p.link,
+    readTime: p.readTime ?? '',
+    slug: p.slug,
+    featuredImage: p.featuredImage
+  }))
 
   return (
     <>
@@ -105,9 +129,9 @@ const Blog: NextPage = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <a href={post.link} target='_blank' rel='noopener noreferrer' className='hover:underline'>
+                    <Link href={`/blog/${post.slug}`} className='hover:underline'>
                       {post.title}
-                    </a>
+                    </Link>
                   </motion.h2>
                   <motion.div
                     className='flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3'
@@ -123,6 +147,10 @@ const Blog: NextPage = () => {
                     <span>{post.readTime}</span>
                   </motion.div>
                 </div>
+              </div>
+
+              <div className='mb-4'>
+                <FeaturedImage src={post.featuredImage} title={post.title} />
               </div>
 
               <motion.p
@@ -210,7 +238,7 @@ const Blog: NextPage = () => {
             viewport={{ once: true }}
           >
             <motion.a
-              href='https://medium.com/@mohitjakhotra'
+              href={MEDIUM_PROFILE}
               target='_blank'
               rel='noopener noreferrer'
               className='btn-primary flex items-center justify-center gap-2'
@@ -239,3 +267,53 @@ const Blog: NextPage = () => {
 }
 
 export default Blog
+
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    // Dynamically import rss-parser on server only
+    const Parser = (await import('rss-parser')).default
+    const parser = new Parser()
+    const feed = await parser.parseURL(MEDIUM_FEED)
+
+    const posts: Post[] = (feed.items || []).slice(0, 12).map((item, idx) => {
+      // contentSnippet is often available; fallback to first 200 chars of content
+      const excerpt = (item.contentSnippet && String(item.contentSnippet)) || (item.content && String(item.content).slice(0, 200)) || ''
+      const tags = (item.categories && Array.isArray(item.categories)) ? item.categories.map(String) : []
+
+      // estimate read time from word count of content (very rough)
+      const text = (item.contentSnippet || item.content || '').replace(/<[^>]+>/g, '')
+      const words = text.split(/\s+/).filter(Boolean).length
+      const minutes = Math.max(1, Math.round(words / 200))
+
+      // compute a slug consistent with the dynamic route
+      const slug = generatePostSlug(item, idx)
+
+      // extract first image from content (best-effort)
+      const contentHtml = String(item['content:encoded'] || item.content || '')
+      const imgMatch = contentHtml.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i)
+      const featuredImage = imgMatch ? imgMatch[1] : undefined
+
+      return {
+        id: item.guid ?? item.link ?? idx,
+        title: item.title ?? 'Untitled',
+        link: item.link ?? '#',
+        date: item.pubDate ?? item.isoDate ?? '',
+        excerpt,
+        tags,
+        readTime: `${minutes} min read`,
+        slug,
+        featuredImage
+      }
+    })
+
+    return {
+      props: { posts },
+      // revalidate every 10 minutes so new Medium posts appear without redeploy
+      revalidate: 600
+    }
+  } catch (err) {
+    // On failure, return empty list but page still builds
+    console.error('Failed to fetch Medium feed', err)
+    return { props: { posts: [] }, revalidate: 600 }
+  }
+}
